@@ -10,7 +10,7 @@ namespace WebAppRazorPages.Migrations
         {
             migrationBuilder.AddColumn<string>(
                 name: "EngineCar",
-                table: "Users",
+                table: "Cars",
                 type: "nvarchar(max)",
                 nullable: false,
                 defaultValue: "");
@@ -20,7 +20,7 @@ namespace WebAppRazorPages.Migrations
         {
             migrationBuilder.DropColumn(
                 name: "EngineCar",
-                table: "Users");
+                table: "Cars");
         }
     }
 }

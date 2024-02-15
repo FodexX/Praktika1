@@ -18,7 +18,7 @@ ConfigurationManager configuration = builder.Configuration;
 
    options.UseSqlServer(configuration.GetConnectionString("DefaultConnection"));
 });*/
-builder.Services.AddScoped<IUserRepository, MocUserRepository>();
+builder.Services.AddScoped<ICar, MocCarRepository>();
 
 var app = builder.Build();
 
@@ -29,7 +29,7 @@ if (!app.Environment.IsDevelopment())
 }
 app.UseStaticFiles();
 
-app.UseRouting();
+//app.Carouting();
 
 app.UseAuthorization();
 

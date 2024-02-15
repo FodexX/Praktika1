@@ -5,17 +5,17 @@ using WebAppRazorPages.Model;
 
 namespace WebAppRazorPages.Pages
 {
-    public class UsersModel : PageModel
+    public class CarsModel : PageModel
     {
-        public UsersModel(IUserRepository userRepository) 
+        public CarsModel(ICar carRepository) 
         {
-            _userRepository = userRepository;
+            _carRepository = carRepository;
         }
-        private IUserRepository _userRepository;
-        public List<User> users { get; set; }
+        private ICar _carRepository;
+        public List<Car> cars { get; set; }
         public IActionResult OnGet()
         {
-            users = _userRepository.GetUsers();
+            cars = _carRepository.GetAll();
             return Page();
         }
     }

@@ -21,13 +21,13 @@ namespace WebAppRazorPages.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder, 1L, 1);
 
-            modelBuilder.Entity("WebAppRazorPages.Model.User", b =>
+            modelBuilder.Entity("WebAppRazorPages.Model.Car", b =>
                 {
-                    b.Property<int>("Id_car")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id_car"), 1L, 1);
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
                     b.Property<string>("Model")
                         .IsRequired()
@@ -41,9 +41,9 @@ namespace WebAppRazorPages.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.HasKey("Id_car");
+                    b.HasKey("Id");
 
-                    b.ToTable("Users");
+                    b.ToTable("Cars");
                 });
 #pragma warning restore 612, 618
         }

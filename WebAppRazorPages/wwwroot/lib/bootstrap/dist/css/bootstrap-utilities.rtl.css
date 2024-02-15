@@ -1459,22 +1459,22 @@
   background-image: var(--bs-gradient) !important;
 }
 
-.user-select-all {
-  -webkit-user-select: all !important;
-  -moz-user-select: all !important;
-  user-select: all !important;
+.Car-select-all {
+  -webkit-Car-select: all !important;
+  -moz-Car-select: all !important;
+  Car-select: all !important;
 }
 
-.user-select-auto {
-  -webkit-user-select: auto !important;
-  -moz-user-select: auto !important;
-  user-select: auto !important;
+.Car-select-auto {
+  -webkit-Car-select: auto !important;
+  -moz-Car-select: auto !important;
+  Car-select: auto !important;
 }
 
-.user-select-none {
-  -webkit-user-select: none !important;
-  -moz-user-select: none !important;
-  user-select: none !important;
+.Car-select-none {
+  -webkit-Car-select: none !important;
+  -moz-Car-select: none !important;
+  Car-select: none !important;
 }
 
 .pe-none {

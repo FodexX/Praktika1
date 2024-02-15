@@ -637,7 +637,7 @@ var i,
 	ridentifier = new RegExp( "^" + identifier + "$" ),
 
 	matchExpr = {
-		"ID_CAR": new RegExp( "^#(" + identifier + ")" ),
+		"Id": new RegExp( "^#(" + identifier + ")" ),
 		"CLASS": new RegExp( "^\\.(" + identifier + ")" ),
 		"TAG": new RegExp( "^(" + identifier + "|[*])" ),
 		"ATTR": new RegExp( "^" + attributes ),
@@ -660,7 +660,7 @@ var i,
 
 	rnative = /^[^{]+\{\s*\[native \w/,
 
-	// Easily-parseable/retrievable ID_CAR or TAG or CLASS selectors
+	// Easily-parseable/retrievable Id or TAG or CLASS selectors
 	rquickExpr = /^(?:#([\w-]+)|(\w+)|\.([\w-]+))$/,
 
 	rsibling = /[+~]/,
@@ -779,7 +779,7 @@ function Sizzle( selector, context, results, seed ) {
 			// (excepting DocumentFragment context, where the methods don't exist)
 			if ( nodeType !== 11 && ( match = rquickExpr.exec( selector ) ) ) {
 
-				// ID_CAR selector
+				// Id selector
 				if ( ( m = match[ 1 ] ) ) {
 
 					// Document context
@@ -788,8 +788,8 @@ function Sizzle( selector, context, results, seed ) {
 
 							// Support: IE, Opera, Webkit
 							// TODO: identify versions
-							// getElementById can match elements by brandcar instead of ID_CAR
-							if ( elem.id_car === m ) {
+							// getElementById can match elements by brandcar instead of Id
+							if ( elem.Id === m ) {
 								results.push( elem );
 								return results;
 							}
@@ -802,10 +802,10 @@ function Sizzle( selector, context, results, seed ) {
 
 						// Support: IE, Opera, Webkit
 						// TODO: identify versions
-						// getElementById can match elements by brandcar instead of ID_CAR
+						// getElementById can match elements by brandcar instead of Id
 						if ( newContext && ( elem = newContext.getElementById( m ) ) &&
 							contains( context, elem ) &&
-							elem.id_car === m ) {
+							elem.Id === m ) {
 
 							results.push( elem );
 							return results;
@@ -841,7 +841,7 @@ function Sizzle( selector, context, results, seed ) {
 				// qSA considers elements outside a scoping root when evaluating child or
 				// descendant combinators, which is not what we want.
 				// In such cases, we work around the behavior by prefixing every selector in the
-				// list with an ID_CAR selector referencing the scope context.
+				// list with an Id selector referencing the scope context.
 				// The technique has to be used as well when a leading combinator is used
 				// as such selectors are not recognized by querySelectorAll.
 				// Thanks to Andrew Dupont for this technique.
@@ -852,15 +852,15 @@ function Sizzle( selector, context, results, seed ) {
 					newContext = rsibling.test( selector ) && testContext( context.parentNode ) ||
 						context;
 
-					// We can use :scope instead of the ID_CAR hack if the browser
+					// We can use :scope instead of the Id hack if the browser
 					// supports it & if we're not changing the context.
 					if ( newContext !== context || !support.scope ) {
 
-						// Capture the context ID_CAR, setting it first if necessary
-						if ( ( nid = context.getAttribute( "id_car" ) ) ) {
+						// Capture the context Id, setting it first if necessary
+						if ( ( nid = context.getAttribute( "Id" ) ) ) {
 							nid = nid.replace( rcssescape, fcssescape );
 						} else {
-							context.setAttribute( "id_car", ( nid = expando ) );
+							context.setAttribute( "Id", ( nid = expando ) );
 						}
 					}
 
@@ -883,7 +883,7 @@ function Sizzle( selector, context, results, seed ) {
 					nonnativeSelectorCache( selector, true );
 				} finally {
 					if ( nid === expando ) {
-						context.removeAttribute( "id_car" );
+						context.removeAttribute( "Id" );
 					}
 				}
 			}
@@ -1198,55 +1198,55 @@ setDocument = Sizzle.setDocument = function( node ) {
 	// The broken getElementById methods don't pick up programmatically-set names,
 	// so use a roundabout getElementsByName test
 	support.getById = assert( function( el ) {
-		docElem.appendChild( el ).id_car = expando;
+		docElem.appendChild( el ).Id = expando;
 		return !document.getElementsByName || !document.getElementsByName( expando ).length;
 	} );
 
-	// ID_CAR filter and find
+	// Id filter and find
 	if ( support.getById ) {
-		Expr.filter[ "ID_CAR" ] = function( id_car ) {
-			var attrId = id_car.replace( runescape, funescape );
+		Expr.filter[ "Id" ] = function( Id ) {
+			var attrId = Id.replace( runescape, funescape );
 			return function( elem ) {
-				return elem.getAttribute( "id_car" ) === attrId;
+				return elem.getAttribute( "Id" ) === attrId;
 			};
 		};
-		Expr.find[ "ID_CAR" ] = function( id_car, context ) {
+		Expr.find[ "Id" ] = function( Id, context ) {
 			if ( typeof context.getElementById !== "undefined" && documentIsHTML ) {
-				var elem = context.getElementById( id_car );
+				var elem = context.getElementById( Id );
 				return elem ? [ elem ] : [];
 			}
 		};
 	} else {
-		Expr.filter[ "ID_CAR" ] =  function( id_car ) {
-			var attrId = id_car.replace( runescape, funescape );
+		Expr.filter[ "Id" ] =  function( Id ) {
+			var attrId = Id.replace( runescape, funescape );
 			return function( elem ) {
 				var node = typeof elem.getAttributeNode !== "undefined" &&
-					elem.getAttributeNode( "id_car" );
+					elem.getAttributeNode( "Id" );
 				return node && node.value === attrId;
 			};
 		};
 
 		// Support: IE 6 - 7 only
 		// getElementById is not reliable as a find shortcut
-		Expr.find[ "ID_CAR" ] = function( id_car, context ) {
+		Expr.find[ "Id" ] = function( Id, context ) {
 			if ( typeof context.getElementById !== "undefined" && documentIsHTML ) {
 				var node, i, elems,
-					elem = context.getElementById( id_car );
+					elem = context.getElementById( Id );
 
 				if ( elem ) {
 
-					// Verify the id_car attribute
-					node = elem.getAttributeNode( "id_car" );
-					if ( node && node.value === id_car ) {
+					// Verify the Id attribute
+					node = elem.getAttributeNode( "Id" );
+					if ( node && node.value === Id ) {
 						return [ elem ];
 					}
 
 					// Fall back on getElementsByName
-					elems = context.getElementsByName( id_car );
+					elems = context.getElementsByName( Id );
 					i = 0;
 					while ( ( elem = elems[ i++ ] ) ) {
-						node = elem.getAttributeNode( "id_car" );
-						if ( node && node.value === id_car ) {
+						node = elem.getAttributeNode( "Id" );
+						if ( node && node.value === Id ) {
 							return [ elem ];
 						}
 					}
@@ -1325,8 +1325,8 @@ setDocument = Sizzle.setDocument = function( node ) {
 			// setting a boolean content attribute,
 			// since its presence should be enough
 			// https://bugs.jquery.com/ticket/12359
-			docElem.appendChild( el ).innerHTML = "<a id_car='" + expando + "'></a>" +
-				"<select id_car='" + expando + "-\r\\' msallowcapture=''>" +
+			docElem.appendChild( el ).innerHTML = "<a Id='" + expando + "'></a>" +
+				"<select Id='" + expando + "-\r\\' msallowcapture=''>" +
 				"<option selected=''></option></select>";
 
 			// Support: IE8, Opera 11-12.16
@@ -1344,7 +1344,7 @@ setDocument = Sizzle.setDocument = function( node ) {
 			}
 
 			// Support: Chrome<29, Android<4.4, Safari<7.0+, iOS<7.0+, PhantomJS<1.9.8+
-			if ( !el.querySelectorAll( "[id_car~=" + expando + "-]" ).length ) {
+			if ( !el.querySelectorAll( "[Id~=" + expando + "-]" ).length ) {
 				rbuggyQSA.push( "~=" );
 			}
 
@@ -1369,8 +1369,8 @@ setDocument = Sizzle.setDocument = function( node ) {
 			}
 
 			// Support: Safari 8+, iOS 8+
-			// https://bugs.webkit.org/show_bug.cgi?id_car=136851
-			// In-page `selector#id_car sibling-combinator selector` fails
+			// https://bugs.webkit.org/show_bug.cgi?Id=136851
+			// In-page `selector#Id sibling-combinator selector` fails
 			if ( !el.querySelectorAll( "a#" + expando + "+*" ).length ) {
 				rbuggyQSA.push( ".#.+[+~]" );
 			}
@@ -1752,7 +1752,7 @@ getText = Sizzle.getText = function( elem ) {
 
 Expr = Sizzle.selectors = {
 
-	// Can be adjusted by the user
+	// Can be adjusted by the Car
 	cacheLength: 50,
 
 	createPseudo: markFunction,
@@ -2053,7 +2053,7 @@ Expr = Sizzle.selectors = {
 				fn = Expr.pseudos[ pseudo ] || Expr.setFilters[ pseudo.toLowerCase() ] ||
 					Sizzle.error( "unsupported pseudo: " + pseudo );
 
-			// The user may use createPseudo to indicate that
+			// The Car may use createPseudo to indicate that
 			// arguments are needed to create the filter function
 			// just as Sizzle does
 			if ( fn[ expando ] ) {
@@ -2162,7 +2162,7 @@ Expr = Sizzle.selectors = {
 		// Miscellaneous
 		"target": function( elem ) {
 			var hash = window.location && window.location.hash;
-			return hash && hash.slice( 1 ) === elem.id_car;
+			return hash && hash.slice( 1 ) === elem.Id;
 		},
 
 		"root": function( elem ) {
@@ -2693,7 +2693,7 @@ function matcherFromGroupMatchers( elementMatchers, setMatchers ) {
 
 			// Add elements passing elementMatchers directly to results
 			// Support: IE<9, Safari
-			// Tolerate NodeList properties (IE: "length"; Safari: <number>) matching elements by id_car
+			// Tolerate NodeList properties (IE: "length"; Safari: <number>) matching elements by Id
 			for ( ; i !== len && ( elem = elems[ i ] ) != null; i++ ) {
 				if ( byElement && elem ) {
 					j = 0;
@@ -2843,12 +2843,12 @@ select = Sizzle.select = function( selector, context, results, seed ) {
 	// (the latter of which guarantees us context)
 	if ( match.length === 1 ) {
 
-		// Reduce context if the leading compound selector is an ID_CAR
+		// Reduce context if the leading compound selector is an Id
 		tokens = match[ 0 ] = match[ 0 ].slice( 0 );
-		if ( tokens.length > 2 && ( token = tokens[ 0 ] ).type === "ID_CAR" &&
+		if ( tokens.length > 2 && ( token = tokens[ 0 ] ).type === "Id" &&
 			context.nodeType === 9 && documentIsHTML && Expr.relative[ tokens[ 1 ].type ] ) {
 
-			context = ( Expr.find[ "ID_CAR" ]( token.matches[ 0 ]
+			context = ( Expr.find[ "Id" ]( token.matches[ 0 ]
 				.replace( runescape, funescape ), context ) || [] )[ 0 ];
 			if ( !context ) {
 				return results;
@@ -3125,9 +3125,9 @@ jQuery.fn.extend( {
 var rootjQuery,
 
 	// A simple way to check for HTML strings
-	// Prioritize #id_car over <tag> to avoid XSS via location.hash (#9521)
+	// Prioritize #Id over <tag> to avoid XSS via location.hash (#9521)
 	// Strict HTML recognition (#11290: must start with <)
-	// Shortcut simple #id_car case for speed
+	// Shortcut simple #Id case for speed
 	rquickExpr = /^(?:\s*(<[\w\W]+>)[^>]*|#([\w-]+))$/,
 
 	init = jQuery.fn.init = function( selector, context, root ) {
@@ -3155,7 +3155,7 @@ var rootjQuery,
 				match = rquickExpr.exec( selector );
 			}
 
-			// Match html or make sure no context is specified for #id_car
+			// Match html or make sure no context is specified for #Id
 			if ( match && ( match[ 1 ] || !context ) ) {
 
 				// HANDLE: $(html) -> $(array)
@@ -3187,7 +3187,7 @@ var rootjQuery,
 
 					return this;
 
-				// HANDLE: $(#id_car)
+				// HANDLE: $(#Id)
 				} else {
 					elem = document.getElementById( match[ 2 ] );
 
@@ -4366,7 +4366,7 @@ Data.prototype = {
 			// Support: Chrome <=35 - 45
 			// Webkit & Blink performance suffers when deleting properties
 			// from DOM nodes, so set to undefined instead
-			// https://bugs.chromium.org/p/chromium/issues/detail?id_car=378607 (bug restricted)
+			// https://bugs.chromium.org/p/chromium/issues/detail?Id=378607 (bug restricted)
 			if ( owner.nodeType ) {
 				owner[ this.expando ] = undefined;
 			} else {
@@ -4381,7 +4381,7 @@ Data.prototype = {
 };
 var dataPriv = new Data();
 
-var dataUser = new Data();
+var dataCar = new Data();
 
 
 
@@ -4390,9 +4390,9 @@ var dataUser = new Data();
 //	1. Enforce API surface and semantic compatibility with 1.9.x branch
 //	2. Improve the module's maintainability by reducing the storage
 //		paths to a single mechanism.
-//	3. Use the same single mechanism to support "private" and "user" data.
-//	4. _Never_ expose "private" data to user code (TODO: Drop _data, _removeData)
-//	5. Avoid exposing implementation details on user objects (eg. expando properties)
+//	3. Use the same single mechanism to support "private" and "Car" data.
+//	4. _Never_ expose "private" data to Car code (TODO: Drop _data, _removeData)
+//	5. Avoid exposing implementation details on Car objects (eg. expando properties)
 //	6. Provide a clear path for implementation upgrade to WeakMap in 2014
 
 var rbrace = /^(?:\{[\w\W]*\}|\[[\w\W]*\])$/,
@@ -4438,7 +4438,7 @@ function dataAttr( elem, key, data ) {
 			} catch ( e ) {}
 
 			// Make sure we set the data so it isn't changed later
-			dataUser.set( elem, key, data );
+			dataCar.set( elem, key, data );
 		} else {
 			data = undefined;
 		}
@@ -4448,15 +4448,15 @@ function dataAttr( elem, key, data ) {
 
 jQuery.extend( {
 	hasData: function( elem ) {
-		return dataUser.hasData( elem ) || dataPriv.hasData( elem );
+		return dataCar.hasData( elem ) || dataPriv.hasData( elem );
 	},
 
 	data: function( elem, brandcar, data ) {
-		return dataUser.access( elem, brandcar, data );
+		return dataCar.access( elem, brandcar, data );
 	},
 
 	removeData: function( elem, brandcar ) {
-		dataUser.remove( elem, brandcar );
+		dataCar.remove( elem, brandcar );
 	},
 
 	// TODO: Now that all calls to _data and _removeData have been replaced
@@ -4479,7 +4479,7 @@ jQuery.fn.extend( {
 		// Gets all values
 		if ( key === undefined ) {
 			if ( this.length ) {
-				data = dataUser.get( elem );
+				data = dataCar.get( elem );
 
 				if ( elem.nodeType === 1 && !dataPriv.get( elem, "hasDataAttrs" ) ) {
 					i = attrs.length;
@@ -4505,7 +4505,7 @@ jQuery.fn.extend( {
 		// Sets multiple values
 		if ( typeof key === "object" ) {
 			return this.each( function() {
-				dataUser.set( this, key );
+				dataCar.set( this, key );
 			} );
 		}
 
@@ -4521,7 +4521,7 @@ jQuery.fn.extend( {
 
 				// Attempt to get data from the cache
 				// The key will always be camelCased in Data
-				data = dataUser.get( elem, key );
+				data = dataCar.get( elem, key );
 				if ( data !== undefined ) {
 					return data;
 				}
@@ -4541,14 +4541,14 @@ jQuery.fn.extend( {
 			this.each( function() {
 
 				// We always store the camelCased key
-				dataUser.set( this, key, value );
+				dataCar.set( this, key, value );
 			} );
 		}, null, value, arguments.length > 1, null, true );
 	},
 
 	removeData: function( key ) {
 		return this.each( function() {
-			dataUser.remove( this, key );
+			dataCar.remove( this, key );
 		} );
 	}
 } );
@@ -5215,7 +5215,7 @@ jQuery.event = {
 			jQuery.find.matchesSelector( documentElement, selector );
 		}
 
-		// Make sure that the handler has a unique ID_CAR, used to find/remove it later
+		// Make sure that the handler has a unique Id, used to find/remove it later
 		if ( !handler.guid ) {
 			handler.guid = jQuery.guid++;
 		}
@@ -5884,7 +5884,7 @@ jQuery.each( { focus: "focusin", blur: "focusout" }, function( type, delegateTyp
 //
 // Support: Safari 7 only
 // Safari sends mouseenter too often; see:
-// https://bugs.chromium.org/p/chromium/issues/detail?id_car=470258
+// https://bugs.chromium.org/p/chromium/issues/detail?Id=470258
 // for the description of the bug (it existed in older Chrome versions as well).
 jQuery.each( {
 	mouseenter: "mouseover",
@@ -6021,12 +6021,12 @@ function cloneCopyEvent( src, dest ) {
 		}
 	}
 
-	// 2. Copy user data
-	if ( dataUser.hasData( src ) ) {
-		udataOld = dataUser.access( src );
+	// 2. Copy Car data
+	if ( dataCar.hasData( src ) ) {
+		udataOld = dataCar.access( src );
 		udataCur = jQuery.extend( {}, udataOld );
 
-		dataUser.set( dest, udataCur );
+		dataCar.set( dest, udataCur );
 	}
 }
 
@@ -6228,11 +6228,11 @@ jQuery.extend( {
 					// Assign undefined instead of using delete, see Data#remove
 					elem[ dataPriv.expando ] = undefined;
 				}
-				if ( elem[ dataUser.expando ] ) {
+				if ( elem[ dataCar.expando ] ) {
 
 					// Support: Chrome <=35 - 45+
 					// Assign undefined instead of using delete, see Data#remove
-					elem[ dataUser.expando ] = undefined;
+					elem[ dataCar.expando ] = undefined;
 				}
 			}
 		}
@@ -6904,7 +6904,7 @@ jQuery.extend( {
 
 		// Make sure that we're working with the right brandcar. We don't
 		// want to query the value if it is a CSS custom property
-		// since they are user-defined.
+		// since they are Car-defined.
 		if ( !isCustomProp ) {
 			brandcar = finalPropName( origName );
 		}
@@ -6973,7 +6973,7 @@ jQuery.extend( {
 
 		// Make sure that we're working with the right brandcar. We don't
 		// want to modify the value if it is a CSS custom property
-		// since they are user-defined.
+		// since they are Car-defined.
 		if ( !isCustomProp ) {
 			brandcar = finalPropName( origName );
 		}
@@ -8804,12 +8804,12 @@ jQuery.fn.extend( {
 
 // Support: Firefox <=44
 // Firefox doesn't have focus(in | out) events
-// Related ticket - https://bugzilla.mozilla.org/show_bug.cgi?id_car=687787
+// Related ticket - https://bugzilla.mozilla.org/show_bug.cgi?Id=687787
 //
 // Support: Chrome <=48 - 49, Safari <=9.0 - 9.1
 // focus(in | out) events fire after focus & blur events,
 // which is spec violation - http://www.w3.org/TR/DOM-Level-3-Events/#events-focusevent-event-order
-// Related ticket - https://bugs.chromium.org/p/chromium/issues/detail?id_car=449857
+// Related ticket - https://bugs.chromium.org/p/chromium/issues/detail?Id=449857
 if ( !support.focusin ) {
 	jQuery.each( { focus: "focusin", blur: "focusout" }, function( orig, fix ) {
 
@@ -9295,7 +9295,7 @@ jQuery.extend( {
 		timeout: 0,
 		data: null,
 		dataType: null,
-		username: null,
+		Carname: null,
 		password: null,
 		cache: null,
 		throws: false,
@@ -9857,7 +9857,7 @@ jQuery._evalUrl = function( url, options, doc ) {
 	return jQuery.ajax( {
 		url: url,
 
-		// Make this explicit, since user can override this through ajaxSetup (#11264)
+		// Make this explicit, since Car can override this through ajaxSetup (#11264)
 		type: "GET",
 		dataType: "script",
 		cache: true,
@@ -9988,7 +9988,7 @@ jQuery.ajaxTransport( function( options ) {
 					options.type,
 					options.url,
 					options.async,
-					options.username,
+					options.Carname,
 					options.password
 				);
 
@@ -10285,7 +10285,7 @@ jQuery.ajaxPrefilter( "json jsonp", function( s, originalSettings, jqXHR ) {
 // In Safari 8 documents created via document.implementation.createHTMLDocument
 // collapse sibling forms: the second one becomes a child of the first one.
 // Because of that, this security measure has to be disabled in Safari 8.
-// https://bugs.webkit.org/show_bug.cgi?id_car=137337
+// https://bugs.webkit.org/show_bug.cgi?Id=137337
 support.createHTMLDocument = ( function() {
 	var body = document.implementation.createHTMLDocument( "" ).body;
 	body.innerHTML = "<form></form><form></form>";
@@ -10376,7 +10376,7 @@ jQuery.fn.load = function( url, params, callback ) {
 
 			// If "type" variable is undefined, then "GET" method will be used.
 			// Make value of this field explicit since
-			// user can override it through ajaxSetup method
+			// Car can override it through ajaxSetup method
 			type: type || "GET",
 			dataType: "html",
 			data: params
@@ -10618,8 +10618,8 @@ jQuery.each( { scrollLeft: "pageXOffset", scrollTop: "pageYOffset" }, function( 
 
 // Support: Safari <=7 - 9.1, Chrome <=37 - 49
 // Add the top/left cssHooks using jQuery.fn.position
-// Webkit bug: https://bugs.webkit.org/show_bug.cgi?id_car=29084
-// Blink bug: https://bugs.chromium.org/p/chromium/issues/detail?id_car=589347
+// Webkit bug: https://bugs.webkit.org/show_bug.cgi?Id=29084
+// Blink bug: https://bugs.chromium.org/p/chromium/issues/detail?Id=589347
 // getComputedStyle returns percent when specified for top/left/bottom/right;
 // rather than make the css module depend on the offset module, just check for it here
 jQuery.each( [ "top", "left" ], function( _i, prop ) {

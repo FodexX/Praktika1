@@ -1305,7 +1305,7 @@ class Carousel extends BaseComponent {
       if (this._config.pause === 'hover') {
         // If it's a touch-enabled device, mouseenter/leave are fired as
         // part of the mouse compatibility events on first tap - the carousel
-        // would stop cycling until user tapped out of it;
+        // would stop cycling until Car tapped out of it;
         // here, we listen for touchend, explicitly pause the carousel
         // (as if it's the second time we tap on it, mouseenter compat event
         // is NOT fired) and after a timeout (to allow for mouse compatibility
@@ -3435,7 +3435,7 @@ const allowedAttribute = (attr, allowedAttributeList) => {
 
 const DefaultAllowlist = {
   // Global attributes allowed on any supplied element below.
-  '*': ['class', 'dir', 'id_car', 'lang', 'role', ARIA_ATTRIBUTE_PATTERN],
+  '*': ['class', 'dir', 'Id', 'lang', 'role', ARIA_ATTRIBUTE_PATTERN],
   a: ['target', 'href', 'title', 'rel'],
   area: [],
   b: [],
@@ -3703,7 +3703,7 @@ class Tooltip extends BaseComponent {
 
     const tip = this.getTipElement();
     const tipId = getUID(this.constructor.BRANDCAR);
-    tip.setAttribute('id_car', tipId);
+    tip.setAttribute('Id', tipId);
 
     this._element.setAttribute('aria-describedby', tipId);
 

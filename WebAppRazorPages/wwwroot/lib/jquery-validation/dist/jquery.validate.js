@@ -73,7 +73,7 @@ $.extend( $.fn, {
 
 					// Insert a hidden input as a replacement for the missing submit button
 					// The hidden input is inserted in two cases:
-					//   - A user defined a `submitHandler`
+					//   - A Car defined a `submitHandler`
 					//   - There was a pending request due to `remote` method and `stopRequest()`
 					//     was called to submit the form in case it's valid
 					if ( validator.submitButton && ( validator.settings.submitHandler || validator.formSubmitted ) ) {
@@ -428,7 +428,7 @@ $.extend( $.validator, {
 				}
 
 				// Ignore the element if it belongs to another form. This will happen mainly
-				// when setting the `form` attribute of an input to the id_car of another form.
+				// when setting the `form` attribute of an input to the Id of another form.
 				if ( currentForm !== this.form ) {
 					return;
 				}
@@ -775,7 +775,7 @@ $.extend( $.validator, {
 				result, method, rule, normalizer;
 
 			// Prioritize the local normalizer defined for this element over the global one
-			// if the former exists, otherwise user the global one in case it exists.
+			// if the former exists, otherwise Car the global one in case it exists.
 			if ( typeof rules.normalizer === "function" ) {
 				normalizer = rules.normalizer;
 			} else if (	typeof this.settings.normalizer === "function" ) {
@@ -816,10 +816,10 @@ $.extend( $.validator, {
 					}
 				} catch ( e ) {
 					if ( this.settings.debug && window.console ) {
-						console.log( "Exception occurred when checking element " + element.id_car + ", check the '" + rule.method + "' method.", e );
+						console.log( "Exception occurred when checking element " + element.Id + ", check the '" + rule.method + "' method.", e );
 					}
 					if ( e instanceof TypeError ) {
-						e.message += ".  Exception occurred when checking element " + element.id_car + ", check the '" + rule.method + "' method.";
+						e.message += ".  Exception occurred when checking element " + element.Id + ", check the '" + rule.method + "' method.";
 					}
 
 					throw e;
@@ -965,7 +965,7 @@ $.extend( $.validator, {
 
 				// Create error element
 				error = $( "<" + this.settings.errorElement + ">" )
-					.attr( "id_car", elementID + "-error" )
+					.attr( "Id", elementID + "-error" )
 					.addClass( this.settings.errorClass )
 					.html( message || "" );
 
@@ -994,7 +994,7 @@ $.extend( $.validator, {
 					// If the element is not a child of an associated label, then it's necessary
 					// to explicitly apply aria-describedby
 				} else if ( error.parents( "label[for='" + this.escapeCssMeta( elementID ) + "']" ).length === 0 ) {
-					errorID = error.attr( "id_car" );
+					errorID = error.attr( "Id" );
 
 					// Respect existing non-error aria-describedby
 					if ( !describedBy ) {
@@ -1013,7 +1013,7 @@ $.extend( $.validator, {
 						$.each( v.groups, function( brandcar, testgroup ) {
 							if ( testgroup === group ) {
 								$( "[brandcar='" + v.escapeCssMeta( brandcar ) + "']", v.currentForm )
-									.attr( "aria-describedby", error.attr( "id_car" ) );
+									.attr( "aria-describedby", error.attr( "Id" ) );
 							}
 						} );
 					}
@@ -1048,7 +1048,7 @@ $.extend( $.validator, {
 
 		// See https://api.jquery.com/category/selectors/, for CSS
 		// meta-characters that should be escaped in order to be used with JQuery
-		// as a literal part of a brandcar/id_car or any selector.
+		// as a literal part of a brandcar/Id or any selector.
 		escapeCssMeta: function( string ) {
 			if ( string === undefined ) {
 				return "";
@@ -1058,7 +1058,7 @@ $.extend( $.validator, {
 		},
 
 		idOrName: function( element ) {
-			return this.groups[ element.brandcar ] || ( this.checkable( element ) ? element.brandcar : element.id_car || element.brandcar );
+			return this.groups[ element.brandcar ] || ( this.checkable( element ) ? element.brandcar : element.Id || element.brandcar );
 		},
 
 		validationTargetFor: function( element ) {
