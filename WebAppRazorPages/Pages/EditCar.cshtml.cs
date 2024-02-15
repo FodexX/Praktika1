@@ -8,45 +8,31 @@ namespace WebAppRazorPages.Pages
 {
     public class EditCarModel : PageModel
     {
-        private readonly ICar _carRepository;
 
-        public EditCarModel(ICar carRepository)
+        public EditCarModel(ICar CarRepository)
         {
-            _carRepository = carRepository;
+            _CarRepository = CarRepository;
         }
 
-        [BindProperty]
+        private ICar _CarRepository;
         public Car Car { get; set; }
         public Car BrandCar { get; set; }
         public Car Model { get; set; }
         public Car EngineCar { get; set; }
 
-        public async Task<IActionResult> OnGetAsync(int? id)
+        public IActionResult OnGet(int id)
         {
-            if (id == null)
-            {
-                return NotFound();
-            }
-
-            Car = _carRepository.GetCar(id.Value);
-
-            if (Car == null)
-            {
-                return NotFound();
-            }
+            Car = _CarRepository.GetCar(id);
+            Car ??= new();
             return Page();
         }
 
-        public async Task<IActionResult> OnPostAsync()
+        public IActionResult OnPost(Car? CarForm)
         {
-            if (!ModelState.IsValid)
-            {
-                return Page();
-            }
 
-            var updatedCar = _carRepository.UpdateCar(Car);
-            
-            return RedirectToPage("/Cars");
+            var CarDB = _CarRepository.UpdateCar(CarForm);
+            if (CarDB == null) return NotFound();
+            return Page();
         }
     }
 }
