@@ -18,5 +18,10 @@ namespace WebAppRazorPages.Pages
             cars = _carRepository.GetAll();
             return Page();
         }
+        public IActionResult OnPost(int id)
+        {
+            _carRepository.DeleteCar(id);
+            return RedirectToPage();
+        }
     }
 }

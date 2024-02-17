@@ -4,14 +4,22 @@
 }
 
 <form method="post">
-    <p>Id: @Model?.Car?.Id</p>
+    <p>ID: @Model?.Car?.Id</p>
     <label for="BrandCar">Марка ТС</label>
-    <input asp-for="Car.BrandCar" type="text" Id="BrandCar" brandcar="BrandCar"><span asp-validation-for="BrandCar"></span>
+    <input asp-for="Car.BrandCar" type="text" id="BrandCar" name ="BrandCar"><span asp-validation-for="Car.BrandCar"></span>
     <h1></h1>
     <label for="Model">Модель ТС</label>
-    <input  asp-for="Car.Model" type="text" Id="Model" brandcar="Model"><span asp-validation-for="Model"></span>
+    <input asp-for="Car.Model" type="text" id="Model" name ="Model"><span asp-validation-for="Car.Model"></span>
     <h2></h2>
     <label for="EngineCar">Тип двигателя</label>
-    <input asp-for="Car.EngineCar" type="text" Id="EngineCar" brandcar="EngineCar"><span asp-validation-for="EngineCar"></span>
-    <button type="submit">Сохранить</button>
+    <input asp-for="Car.EngineCar" type="text" id="EngineCar" name ="EngineCar"><span asp-validation-for="Car.EngineCar"></span>
+    <button type="submit" class="btn btn-primary" >Сохранить</button>
 </form>
+
+
+
+
+
+
+
+

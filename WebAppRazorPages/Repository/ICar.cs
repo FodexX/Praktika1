@@ -8,6 +8,6 @@ namespace WebAppRazorPages.Controller
         public Car? GetCar(int Id);
         public List<Car> GetAll();
         public Car UpdateCar(Car upCar);
-        public List<Car> DeleteCar(int Id);
+        public Car DeleteCar(int Id);
     }
 }

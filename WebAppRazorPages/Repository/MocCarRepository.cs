@@ -19,14 +19,11 @@ namespace WebAppRazorPages.Controller
             return Icar;
         }
 
-        public List<Car> DeleteCar(int Id)
+        public Car DeleteCar(int Id)
         {
-            var carDelete = _cars.FirstOrDefault(x => x.Id == Id);
-            if (carDelete != null)
-            {
-                _cars.Remove(carDelete);
-            }
-            return _cars;
+            var car = GetCar(Id);
+            _cars.Remove(car);
+            return car;
         }
 
         public Car? GetCar(int Id) 
@@ -39,7 +36,7 @@ namespace WebAppRazorPages.Controller
             return _cars;
         }
 
-        public Car UpdateCar(Car upCar) 
+        public Car UpdateCar(Car upCar)
         {
             var carDB = GetCar(upCar.Id);
             if (carDB != null)
@@ -49,5 +46,6 @@ namespace WebAppRazorPages.Controller
             _cars.Add(upCar);
             return upCar;
         }
+
     }
 }

@@ -16,23 +16,23 @@ namespace WebAppRazorPages.Pages
 
         private ICar _CarRepository;
         public Car Car { get; set; }
-        public Car BrandCar { get; set; }
-        public Car Model { get; set; }
-        public Car EngineCar { get; set; }
 
         public IActionResult OnGet(int id)
         {
             Car = _CarRepository.GetCar(id);
             Car ??= new();
+            Console.WriteLine($"Received Car ID: {Car.Id}, Brand: {Car.BrandCar}, Model: {Car.Model}, Engine: {Car.EngineCar}");
             return Page();
         }
 
-        public IActionResult OnPost(Car? CarForm)
+        public IActionResult OnPost(Car CarForm)
         {
+            Console.WriteLine($"Received Car ID: {CarForm.Id}, Brand: {CarForm.BrandCar}, Model: {CarForm.Model}, Engine: {CarForm.EngineCar}");
+            Car = _CarRepository.UpdateCar(CarForm);
 
-            var CarDB = _CarRepository.UpdateCar(CarForm);
-            if (CarDB == null) return NotFound();
-            return Page();
+            if (Car == null) return NotFound();
+
+            return RedirectToPage("Cars");
         }
     }
 }

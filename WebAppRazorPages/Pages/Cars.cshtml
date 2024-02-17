@@ -37,8 +37,8 @@
                         <p><strong>EngineCar:</strong>@Car.EngineCar</p>
                         <div>
                             <a asp-page="EditCar" asp-route-id="@Car.Id" class="btn btn-secondary">Изменить</a>
-                            <form asp-page-handler="delete" method="post" asp-route-id="@Car.Id" class="delete-form">
-                                <button type = "submit" class="btn btn-danger delete-button">Удалить</button>
+                            <form asp-page-handler="Delete" method="post" asp-route-id="@Car.Id" class="delete-form">
+                                <button type="submit" class="btn btn-danger delete-button">Удалить</button>
                             </form>
                         </div>   
                     </div>

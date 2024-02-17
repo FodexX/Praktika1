@@ -15,9 +15,12 @@ namespace WebAppRazorPages.Controller
         {
             return Icar;
         }
-        public List<Car> DeleteCar(int Id)
+        public Car DeleteCar(int Id)
         {
-            throw new NotImplementedException();
+            var car = GetCar(Id);
+            _appDbContext.Remove(car);
+            _appDbContext.SaveChanges();
+            return car;
         }
 
         public Car? GetCar(int Id)

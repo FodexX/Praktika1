@@ -29,7 +29,7 @@ namespace WebAppRazorPages.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
-                    b.Property<string>("Model")
+                    b.Property<string>("BrandCar")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
@@ -37,7 +37,7 @@ namespace WebAppRazorPages.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("BrandCar")
+                    b.Property<string>("Model")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 

@@ -12,13 +12,13 @@ builder.Services.AddRazorPages();
 
 ConfigurationManager configuration = builder.Configuration;
 
-/*builder.Services.AddDbContextPool<AppDbContext>(options =>
+builder.Services.AddDbContextPool<AppDbContext>(options =>
 {
 
 
    options.UseSqlServer(configuration.GetConnectionString("DefaultConnection"));
-});*/
-builder.Services.AddScoped<ICar, MocCarRepository>();
+});
+builder.Services.AddScoped<ICar, SqlCarRepository>();
 
 var app = builder.Build();
 
@@ -28,8 +28,6 @@ if (!app.Environment.IsDevelopment())
     app.UseExceptionHandler("/Error");
 }
 app.UseStaticFiles();
-
-//app.Carouting();
 
 app.UseAuthorization();
 
