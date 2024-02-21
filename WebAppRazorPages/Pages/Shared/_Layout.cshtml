@@ -1,8 +1,8 @@
-﻿<!DOCTYPE html>
+﻿﻿<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="utf-8" />
-    <meta brandcar="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>@ViewData["Title"] - WebAppRazorPages</title>
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
@@ -12,7 +12,7 @@
     <header>
         <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
             <div class="container">
-                <a class="navbar-brandcar" asp-area="" asp-page="/Index">WebAppRazorPages</a>
+                <a class="navbar-brand" asp-area="" asp-page="/Index">WebAppRazorPages</a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
                         aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
@@ -29,6 +29,21 @@
                             <a class="nav-link text-dark" asp-area="" asp-page="/Cars">Машины</a>
                         </li>
                     </ul>
+                        <!-- Кнопка входа и выхода -->
+                        <div class="text-right ml-auto mr-3">
+                        @if (User.Identity.IsAuthenticated)
+                        {
+                                <form asp-controller="Account" asp-action="Logout" method="post" class="form-inline">
+                                    <span class="navbar-text mr-3">Привет, @User.Identity.Name!</span>
+                                    <button type="submit" class="btn btn-link text-dark">Выход</button>
+                                </form>
+                        }
+                        else
+                        {
+                                <a asp-controller="Account" asp-action="Login" class="btn btn-link text-dark">Вход</a>
+                        }
+                        </div>
+                        <!-- Кнопка входа и выхода -->
                 </div>
             </div>
         </nav>
@@ -48,7 +63,8 @@
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
-
+    <!-- Подключение скриптов валидации из _ValidationScriptsPartial.cshtml -->
+    <partial name="_ValidationScriptsPartial" />
     @await RenderSectionAsync("Scripts", required: false)
 </body>
 </html>

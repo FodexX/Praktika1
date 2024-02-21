@@ -1,6 +1,7 @@
 ﻿using WebAppRazorPages.Model;
+using WebAppRazorPages.Repository;
 
-namespace WebAppRazorPages.Controller
+namespace WebAppRazorPages.Repository
 {
     public class SqlCarRepository : ICar
     {
