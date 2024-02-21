@@ -1,5 +1,4 @@
-﻿using Microsoft.AspNetCore.Authentication.Cookies;
-using Microsoft.AspNetCore.Authentication;
+﻿using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Mvc;
 using System.Security.Claims;
 using WebAppRazorPages.Model.AuthApp;
@@ -51,14 +50,14 @@ namespace WebAppRazorPages.Controllers
         {
             if (ModelState.IsValid)
             {
-                AuthUser existingUser = _db.AuthUsers.FirstOrDefault(u => u.Email == model.Email);
-                if (existingUser == null)
+                AuthUser user = _db.AuthUsers.FirstOrDefault(u => u.Email == model.Email);
+                if (user == null)
                 {
                     AuthUser newUser = new AuthUser { Email = model.Email, Password = model.Password };
                     _db.AuthUsers.Add(newUser);
                     _db.SaveChanges();
 
-                    Authenticate(newUser.Email); // аутентификация
+                    Authenticate(newUser.Email);
 
                     Response.Cookies.Append("UserId", newUser.Id.ToString());
                     Response.Cookies.Append("UserEmail", newUser.Email);
@@ -72,6 +71,7 @@ namespace WebAppRazorPages.Controllers
             }
             return View(model);
         }
+
 
         private async void Authenticate(string userName)
         {
