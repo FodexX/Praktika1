@@ -1,6 +1,6 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
-using WebAppRazorPages.Controller;
+using WebAppRazorPages.Repository;
 using WebAppRazorPages.Model;
 
 namespace WebAppRazorPages.Pages

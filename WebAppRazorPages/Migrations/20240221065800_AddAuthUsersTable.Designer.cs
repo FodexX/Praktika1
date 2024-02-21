@@ -5,15 +5,14 @@ using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using WebAppRazorPages.Repository;
-using WebAppRazorPages.Repository;
 
 #nullable disable
 
 namespace WebAppRazorPages.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20240125061325_LastName")]
-    partial class EngineCar
+    [Migration("20240221065800_AddAuthUsersTable")]
+    partial class AddAuthUsersTable
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -24,6 +23,27 @@ namespace WebAppRazorPages.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder, 1L, 1);
 
+            modelBuilder.Entity("WebAppRazorPages.Model.AuthApp.AuthUser", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+
+                    b.Property<string>("Email")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Password")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("AuthUsers");
+                });
+
             modelBuilder.Entity("WebAppRazorPages.Model.Car", b =>
                 {
                     b.Property<int>("Id")
@@ -32,7 +52,7 @@ namespace WebAppRazorPages.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
-                    b.Property<string>("Model")
+                    b.Property<string>("BrandCar")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
@@ -40,7 +60,7 @@ namespace WebAppRazorPages.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("BrandCar")
+                    b.Property<string>("Model")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
