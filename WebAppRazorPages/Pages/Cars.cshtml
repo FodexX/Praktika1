@@ -29,22 +29,18 @@
         <div class="row">
             @foreach (var Car in Model.cars)
             {
-                <div class="col-md-3">
+                <div class="col-md-4">
                     <div class="car-card">
                         <p><strong>ID:</strong>@Car.Id</p>
                         <p><strong>BrandCar:</strong>@Car.BrandCar</p>
                         <p><strong>Model:</strong>@Car.Model</p>
                         <p><strong>EngineCar:</strong>@Car.EngineCar</p>
-                        <div class="row">
-                            <div class="col">
-                                <a asp-page="EditCar" asp-route-id="@Car.Id" class="btn btn-secondary">Изменить</a>
-                            </div>
-                            <div class="col">
-                                <form asp-page-handler="Delete" method="post" asp-route-id="@Car.Id" class="delete-form">
-                                    <button type="submit" class="btn btn-danger">Удалить</button>
-                                </form>
-                            </div>
-                        </div>
+                        <div>
+                            <a asp-page="EditCar" asp-route-id="@Car.Id" class="btn btn-secondary">Изменить</a>
+                            <form asp-page-handler="Delete" method="post" asp-route-id="@Car.Id" class="delete-form">
+                                <button type="submit" class="btn btn-danger delete-button">Удалить</button>
+                            </form>
+                        </div>   
                     </div>
                 </div>
             }

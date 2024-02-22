@@ -1,10 +1,9 @@
 using Microsoft.AspNetCore.Hosting.Server;
 using System;
+using WebAppRazorPages.Controller;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Configuration;
-using Microsoft.AspNetCore.Authentication.Cookies;
-using WebAppRazorPages.Repository;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -21,12 +20,6 @@ builder.Services.AddDbContextPool<AppDbContext>(options =>
 });
 builder.Services.AddScoped<ICar, SqlCarRepository>();
 
-builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
-    .AddCookie(options =>
-    {
-        options.LoginPath = new PathString("/Account/Login");
-    });
-
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
@@ -36,21 +29,8 @@ if (!app.Environment.IsDevelopment())
 }
 app.UseStaticFiles();
 
-app.UseRouting();
-
-app.UseAuthentication();
-
 app.UseAuthorization();
 
-app.UseEndpoints(endpoints =>
-{
-    endpoints.MapControllerRoute(
-        name: "default",
-        pattern: "{controller=Home}/{action=Index}/{id?}");
-});
-
 app.MapRazorPages();
-
-app.MapControllers();
 
 app.Run();
