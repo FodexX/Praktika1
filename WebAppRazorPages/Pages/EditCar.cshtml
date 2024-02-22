@@ -3,73 +3,23 @@
 @{
 }
 
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>User</title>
-    <!-- Подключение Bootstrap -->
-    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
-    <style>
-        /* Дополнительные стили */
-        body {
-            padding: 20px;
-        }
+<form method="post">
+    <p>ID: @Model?.Car?.Id</p>
+    <label for="BrandCar">Марка ТС</label>
+    <input asp-for="Car.BrandCar" type="text" id="BrandCar" name ="BrandCar"><span asp-validation-for="Car.BrandCar"></span>
+    <h1></h1>
+    <label for="Model">Модель ТС</label>
+    <input asp-for="Car.Model" type="text" id="Model" name ="Model"><span asp-validation-for="Car.Model"></span>
+    <h2></h2>
+    <label for="EngineCar">Тип двигателя</label>
+    <input asp-for="Car.EngineCar" type="text" id="EngineCar" name ="EngineCar"><span asp-validation-for="Car.EngineCar"></span>
+    <button type="submit" class="btn btn-primary" >Сохранить</button>
+</form>
 
-        form {
-            max-width: 500px;
-            margin: auto;
-        }
 
-        label {
-            font-weight: bold;
-        }
 
-        input[type="text"] {
-            width: 100%;
-            padding: 8px;
-            margin-bottom: 10px;
-            border: 1px solid #ced4da;
-            border-radius: 4px;
-            box-sizing: border-box;
-        }
 
-        button[type="submit"] {
-            background-color: #007bff;
-            color: white;
-            padding: 10px 20px;
-            border: none;
-            border-radius: 4px;
-            cursor: pointer;
-        }
 
-        button[type="submit"]:hover {
-            background-color: #0056b3;
-        }
-    </style>
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-</head>
-<body>
-    <div class="container">
-        <h1>User</h1>
-        <form method="post">
-            <div class="form-group">
-                <label for="BrandCar">Марка ТС</label>
-                <input asp-for="Car.BrandCar" type="text" class="form-control" id="BrandCar" name="BrandCar">
-                <span asp-validation-for="Car.BrandCar" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label for="Model">Модель ТС</label>
-                <input asp-for="Car.Model" type="text" class="form-control" id="Model" name="Model">
-                <span asp-validation-for="Car.Model" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label for="EngineCar">Тип двигателя</label>
-                <input asp-for="Car.EngineCar" type="text" class="form-control" id="EngineCar" name="EngineCar">
-                <span asp-validation-for="Car.EngineCar" class="text-danger"></span>
-            </div>
-            <button type="submit" class="btn btn-primary">Сохранить</button>
-        </form>
-</body>
-</html>
+
+
+
