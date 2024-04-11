@@ -1,6 +1,7 @@
-﻿using WebAppRazorPages.Model;
+﻿using Microsoft.EntityFrameworkCore;
+using Project.Model;
 
-namespace WebAppRazorPages.Controller
+namespace Project.Repository
 {
     public class SqlCarRepository : ICar
     {
@@ -25,7 +26,7 @@ namespace WebAppRazorPages.Controller
 
         public Car? GetCar(int Id)
         {
-            return _appDbContext.Cars.Where( u => u.Id == Id).ToList().FirstOrDefault();
+            return _appDbContext.Cars.Where(u => u.Id == Id).ToList().FirstOrDefault();
         }
 
         public List<Car> GetAll()

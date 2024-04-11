@@ -1,11 +1,11 @@
-﻿using Microsoft.AspNetCore.Mvc;
-using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel.DataAnnotations;
 
-namespace WebAppRazorPages.Model.AuthApp
+namespace Project.Model.AuthApp
 {
     public class LoginModel
     {
         [Required(ErrorMessage = "Не указан Email")]
+        [EmailAddress(ErrorMessage = "Некорректный адрес электронной почты")]
         public string Email { get; set; }
 
         [Required(ErrorMessage = "Не указан пароль")]

@@ -1,12 +1,13 @@
-﻿using Microsoft.AspNetCore.Authentication;
+﻿using Microsoft.AspNetCore.Authentication.Cookies;
+using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Mvc;
 using System.Security.Claims;
-using WebAppRazorPages.Model.AuthApp;
-using WebAppRazorPages.Repository;
+using Project.Model.AuthApp;
+using Project.Repository;
 using System.Linq;
 using Microsoft.AspNetCore.Authorization;
 
-namespace WebAppRazorPages.Controllers
+namespace Project.Controllers
 {
     public class AccountController : Controller
     {

@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace WebAppRazorPages.Model
+namespace Project.Model
 {
     public class Car
     {
@@ -11,11 +11,14 @@ namespace WebAppRazorPages.Model
         public string Model { get; set; }
         [Required(ErrorMessage = "Введите тип двигателя")]
         public string EngineCar { get; set; }
+        public List<Mileages> Mileages { get; set; }
+
         public Car() 
         { 
             BrandCar ??= string.Empty;
             Model ??= string.Empty;
             EngineCar ??= string.Empty;
+            Mileages ??= new();
         }
     }
 }

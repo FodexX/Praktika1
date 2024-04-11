@@ -8,7 +8,7 @@
     }
   },
   "profiles": {
-    "WebAppRazorPages": {
+    "Project": {
       "commandName": "Project",
       "dotnetRunMessages": true,
       "launchBrowser": true,

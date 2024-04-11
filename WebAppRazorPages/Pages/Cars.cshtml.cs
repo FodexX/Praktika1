@@ -1,10 +1,12 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
-using WebAppRazorPages.Controller;
-using WebAppRazorPages.Model;
+using Project.Repository;
+using Project.Model;
+using Microsoft.AspNetCore.Authorization;
 
-namespace WebAppRazorPages.Pages
+namespace Project.Pages
 {
+    [Authorize]
     public class CarsModel : PageModel
     {
         public CarsModel(ICar carRepository) 

@@ -1,6 +1,6 @@
-﻿using WebAppRazorPages.Model;
+﻿using Project.Model;
 
-namespace WebAppRazorPages.Controller
+namespace Project.Repository
 {
     public interface ICar
     {

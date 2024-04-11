@@ -1,4 +1,4 @@
-﻿namespace WebAppRazorPages.Model.AuthApp
+﻿namespace Project.Model.AuthApp
 {
     public class AuthUser
     {
